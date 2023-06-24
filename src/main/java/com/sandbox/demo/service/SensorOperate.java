@@ -3,7 +3,11 @@ package com.sandbox.demo.service;
 import com.sandbox.demo.entities.Sensor;
 import com.sandbox.demo.entities.SensorSet;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,9 +22,9 @@ public class SensorOperate {
     static DateTimeFormatter date = DateTimeFormatter.ofPattern("dd, MMMM yyyy");
     public static final String PATH_NAME = "D:\\000-Documents\\INTELLIJ\\demo\\src\\main\\text.txt";
     public static List<SensorSet> getSet(){
-        List sensorSets = new ArrayList<SensorSet>();
+        ArrayList<SensorSet> sensorSets = new ArrayList<SensorSet>();
 
-        List sensorIPs = new ArrayList<String>();
+        ArrayList<String> sensorIPs = new ArrayList<String>();
         sensorIPs.addAll(readAll());
 
         for (int i = 0; i<sensorIPs.size(); i++){
@@ -37,7 +41,7 @@ public class SensorOperate {
     }
 
     public static List<DataPayload> getPayload( List<SensorSet> sensorSets){
-        List data = new ArrayList<DataPayload>();
+        ArrayList<DataPayload> data = new ArrayList<DataPayload>();
         DataPayload dataPayload = new DataPayload();
         dataPayload.setSensorPayload(sensorSets);
         dataPayload.setPayloadTime(time.format(LocalDateTime.now()));
@@ -56,7 +60,7 @@ public class SensorOperate {
     }
 
     public static Set<String> readAll(){
-        Set sensorIP = new TreeSet();
+        Set<String> sensorIP = new TreeSet();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(PATH_NAME));
             String line = "";
@@ -73,7 +77,7 @@ public class SensorOperate {
 
     public static void deleteIP(String text){
         text = "192.168.1." + text;
-        List tempSet = new ArrayList<String>();
+        ArrayList<String> tempSet = new ArrayList<String>();
         tempSet.addAll(readAll());
         tempSet.remove(text);
 
