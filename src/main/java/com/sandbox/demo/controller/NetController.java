@@ -17,7 +17,7 @@ public class NetController {
 
     public static List sensorSets = new ArrayList<SensorSet>();
 
-    // test commit
+
     @GetMapping("/1")
     public Sensor getReading(){
         Sensor sensor = new Sensor();
